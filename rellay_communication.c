@@ -63,7 +63,7 @@ int sendDataToServer(enum OpenOrClose oc, enum RelayNumber rn, int sockFD) {
 
     if (writtenBytes != 2) {
         fprintf(stderr, "Error sending data\n");
-        
+
     }
 
 }
