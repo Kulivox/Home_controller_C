@@ -2,8 +2,30 @@
 // Created by Michal on 29-Apr-20.
 //
 
-#ifndef HOME_CONTROLLER_C_RELLAY_COMM_H
-#define HOME_CONTROLLER_C_RELLAY_COMM_H
+#ifndef HOME_CONTROLLER_C_BASIC_COMM_H
+#define HOME_CONTROLLER_C_BASIC_COMM_H
+
+enum OpenOrClose {
+  relay_open = 49,
+  relay_close = 50
+};
+
+
+enum RelayNumber {
+  relay_zero,
+  relay_one,
+  relay_two,
+  relay_three,
+  relay_four,
+  relay_five,
+  relay_six,
+  relay_seven
+};
+
+enum IPVarType {
+  ip_int,
+  ip_str
+};
 
 /*
  * This function creates TCP connection to server specified by ip and port in first two args
@@ -16,7 +38,7 @@
  *
  */
 
-int createClientSocket(char *ip, int port, int *sockFD);
+int createClientSocket(enum IPVarType type, void *ip, int port, int *sockFD);
 
 
 /*
@@ -27,7 +49,9 @@ int createClientSocket(char *ip, int port, int *sockFD);
 
 int closeConnection(int socketFD);
 
-int sendDataToServer(char * data, int sockFD);
+int sendDataToRelayServer(enum OpenOrClose oc, enum RelayNumber rn, int sockFD);
+
+int readDataFromRelayServer(int sockFD, char **payload) ;
 
 
-#endif // HOME_CONTROLLER_C_RELLAY_COMM_H
+#endif // HOME_CONTROLLER_C_BASIC_COMM_H
