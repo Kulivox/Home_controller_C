@@ -30,7 +30,7 @@ static int setIP(enum IPVarType type, void *ip,
 int createClientSocket(enum IPVarType type, void *ip, int port, int *sockFD) {
   *sockFD = socket(AF_INET, SOCK_STREAM, 0);
 
-  if (sockFD < 0) {
+  if (*sockFD < 0) {
     fprintf(stderr, "Could not obtain socket FD\n");
     return 1;
   }
@@ -53,7 +53,7 @@ int createClientSocket(enum IPVarType type, void *ip, int port, int *sockFD) {
   return 0;
 }
 
-int sendDataToRelayServer(enum OpenOrClose oc, enum RelayNumber rn,
+int sendDataToRelayServer(enum relayOperations oc, enum RelayNumber rn,
                           int sockFD) {
   char payload[2] = {0};
   payload[0] = (char) oc;
@@ -75,7 +75,7 @@ int sendDataToRelayServer(enum OpenOrClose oc, enum RelayNumber rn,
 }
 
 
-int readDataFromRelayServer(int sockFD, char **payload) {
+int readDataFromRelayServer(int sockFD, char *payload) {
   int writtenBytes = read(sockFD, payload, 100);
 
   if (writtenBytes < 0) {

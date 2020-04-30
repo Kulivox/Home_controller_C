@@ -5,9 +5,10 @@
 #ifndef HOME_CONTROLLER_C_BASIC_COMM_H
 #define HOME_CONTROLLER_C_BASIC_COMM_H
 
-enum OpenOrClose {
+enum relayOperations {
   relay_open = 49,
-  relay_close = 50
+  relay_close = 50,
+  relay_stat = 51
 };
 
 
@@ -49,9 +50,9 @@ int createClientSocket(enum IPVarType type, void *ip, int port, int *sockFD);
 
 int closeConnection(int socketFD);
 
-int sendDataToRelayServer(enum OpenOrClose oc, enum RelayNumber rn, int sockFD);
+int sendDataToRelayServer(enum relayOperations oc, enum RelayNumber rn, int sockFD);
 
-int readDataFromRelayServer(int sockFD, char **payload) ;
+int readDataFromRelayServer(int sockFD, char *payload) ;
 
 
 #endif // HOME_CONTROLLER_C_BASIC_COMM_H
