@@ -12,14 +12,14 @@ enum OpenOrClose {
 
 
 enum RelayNumber {
-  relay_zero,
-  relay_one,
-  relay_two,
-  relay_three,
-  relay_four,
-  relay_five,
-  relay_six,
-  relay_seven
+  relay_one = 49,
+  relay_two = 50,
+  relay_three = 51,
+  relay_four = 52,
+  relay_five = 53,
+  relay_six = 54,
+  relay_seven = 55,
+  relay_eight = 56
 };
 
 enum IPVarType {

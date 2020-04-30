@@ -5,5 +5,5 @@
 #ifndef HOME_CONTROLLER_C_XMLGET_H
 #define HOME_CONTROLLER_C_XMLGET_H
 char * getXML();
-int extractValue(char * file, char * value, long * extractedVal);
+int XMLExtractValue(char * file, char * value, long * extractedVal);
 #endif // HOME_CONTROLLER_C_XMLGET_H

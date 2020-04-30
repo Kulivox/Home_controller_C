@@ -56,8 +56,8 @@ int createClientSocket(enum IPVarType type, void *ip, int port, int *sockFD) {
 int sendDataToRelayServer(enum OpenOrClose oc, enum RelayNumber rn,
                           int sockFD) {
   char payload[2] = {0};
-  payload[0] = (char)oc;
-  payload[1] = (char)rn;
+  payload[0] = (char) oc;
+  payload[1] = (char) rn;
 
   int writtenBytes = write(sockFD, payload, 2);
 
@@ -66,8 +66,14 @@ int sendDataToRelayServer(enum OpenOrClose oc, enum RelayNumber rn,
     return 1;
   }
 
+#ifdef DEBUG
+  char buffer[10] = {0};
+  read(sockFD, buffer, 10);
+  printf("RETURN: %s\n", buffer);
+#endif
   return 0;
 }
+
 
 int readDataFromRelayServer(int sockFD, char **payload) {
   int writtenBytes = read(sockFD, payload, 100);

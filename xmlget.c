@@ -55,7 +55,7 @@ char * getXML() {
 }
 
 
-int extractValue(char * file, char * value, long * extractedVal) {
+int XMLExtractValue(char * file, char * value, long * extractedVal) {
   char * needlePos = strstr(file, value);
 
   if (needlePos == NULL) {
